@@ -1,0 +1,190 @@
+<!doctype html>
+<html>
+
+<head>
+    <script>
+    (function(){
+    $('ul.day-picker li').on('click', function(){
+        $(this).toggleClass('day-selected');
+    });
+  
+    $('ul.color-picker li').on('click', function(){
+        $('.color-selected').removeClass('color-selected');
+        $(this).addClass('color-selected');
+    });
+}(jQuery));
+    </script>
+
+    <style>
+    @import "compass/css3";
+
+$primary-font: 'Lato', sans-serif;
+
+@import url(http://www.markmurray.co/codepen/customstyle.css), 
+  url(http://fonts.googleapis.com/css?family=Lato:300,400);
+
+*, *:before, *:after { @inlude box-sizing(border-box); }
+
+html, body {
+  background: aliceblue;
+  font-family: $primary-font;
+  height: 100%;
+}
+$light-navy: #4f708f;
+$blue:    #3498db;
+$purple:  #9b59b6;
+$navy:    #34495e;
+$green:   #2ecc71;
+$red:     #e74c3c;
+$orange:  #f39c12;
+$yellow:  #f1c40f;
+$gray:    #bdc3c7;
+
+.blue   { background: $blue }
+.purple { background: $purple }
+.navy   { background: $navy }
+.green  { background: $green }
+.red    { background: $red }
+.orange { background: $orange }
+.yellow { background: $yellow }
+.gray   { background: $gray }
+
+.add-module {
+  max-width: 250px;
+  background: white;
+  position: fixed;
+  right: 0; top: 0;
+  padding: 0.75em;
+  background: $navy;
+  color: white;
+  height: 100%;
+  
+  h1 {
+    color: $light-navy;
+    font-size: 0.8em;
+    line-height: 2;
+  }
+  
+  input {
+    width: 100%;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 0.75em;
+    background: #3d566e;
+    color: white;
+    box-sizing: border-box;
+    margin-bottom: 0.5em;
+    font-size: 0.8em;
+  }
+  
+  input[type="time"]{
+    font-size: 0.9em;
+    font-family: 'Lato', sans-serif;
+  }
+  
+  input[type="submit"]{
+    background: lighten($red, 5%);
+    cursor: pointer;
+    
+    &:hover { background: $red }
+  }
+  
+  .half {
+    width: 49%;
+    display: inline-block;
+    margin: 0;
+  }
+  
+  .day-picker {
+    margin-bottom: 0.5em;
+  }
+  
+  .day-picker li {
+    font-size: 0.8em;
+    display: inline-block;
+    background: lighten($navy, 5%);
+    padding: 0.5em;
+    color: $light-navy;
+    cursor: pointer;
+    width: calc(100% / 5 - 1.15em);
+    text-align: center;
+    border: 1px solid;
+    margin-right: -1px;
+    @include transition(all 0.3s ease);
+    
+    &:first-child { border-radius: 5px 0 0 5px; }
+    &:hover { color: white; position: relative; }
+    &:last-child { border-radius: 0 5px 5px 0; }
+  }
+  
+  .day-picker li.day-selected {
+    color: white;
+    position: relative;
+  }
+  
+  .color-picker {
+    margin: 0 auto 0.5em;
+    text-align: center;
+  }
+  
+  .color-picker li {
+    display: inline-block;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    margin: 5px;
+    text-align: center;
+    cursor: pointer;
+    opacity: 0.6;
+    @include transition(opacity 0.3s ease);
+    
+    &:hover { opacity: 1 }
+  }
+  
+  .color-picker li.color-selected {
+    border: 2px solid white;
+    opacity: 1;
+  }
+}
+    </style>
+</head>
+
+<body>
+<div class="add-module">
+  <h1>Module Name</h1>
+  <input type="text" placeholder="Module Name.. ex. Computer Science">
+  <h1>Module Code</h1>
+  <input type="text" placeholder="Module Code.. ex. CS101">
+  <div class="half">
+    <h1>Start Time</h1>
+    <input type="time" value="09:00">
+  </div>
+  <div class="half">
+    <h1>End Time</h1>
+    <input type="time" value="10:00">
+  </div>  
+   
+  <h1>location</h1>
+  <input type="text" placeholder="Location.. ex. CS Building">
+  <h1>Day</h1>
+  <ul class="day-picker">
+    <li>Mon</li><li class="day-selected">Tue</li><li>Wed</li><li>Thu</li><li>Fri</li>
+  </ul>
+  
+  <h1>Color</h1>
+  <ul class="color-picker">
+    <li class="blue"></li>
+    <li class="red color-selected"></li>
+    <li class="yellow"></li>
+    <li class="purple"></li>
+    <li class="green"></li>
+    <li class="orange"></li>
+    <li class="gray"></li>
+    
+  </ul>
+  <form>
+    <input type="submit" value="Add to Timetable">
+  </form>
+</div>
+</body>
+</html>
