@@ -673,13 +673,9 @@ glyph {
 
 				</li>
 				<li id="weather">
-					<img src="/images/weather.png" alt="" width="128" height="128" />
-					<h3>날씨</h3>
 					<p> 미구현 </p>
 				</li>
 				<li id="calender">
-					<img src="/images/calendar.png" alt="" width="128" height="128" />
-					<h3>캘린더</h3>
 					<p> 대한민국 공휴일 캘린더 </p>
 
 					<iframe src="https://calendar.google.com/calendar/embed?src=ko.south_korea%23holiday%40group.v.calendar.google.com&ctz=Asia/Seoul" style="border: 0" width="700" height="600" frameborder="0" scrolling="no"></iframe>
@@ -714,21 +710,27 @@ glyph {
 					});
 					</script>
         -->
-
-        <div id="sample">
-          <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script> <script type="text/javascript">
-        //<![CDATA[
-                bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
-          //]]>
+          <div id="memo">
+            <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script> <script type="text/javascript">
+          //<![CDATA[
+                  bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+            //]]>
+            </script>
+            <h4>
+              Note
+            </h4>
+            <textarea name="area2" style="width: 100%;">
+                 Some Initial Content was in this textarea
+          </textarea><br />
+          </div>
+          <p><input type="button" id="save" value="저장"></p>
+          <script type="text/javascript">
+          $('#save').click(function() {
+            $('#memo').val('');
+            localStorage.clear();
+          });
           </script>
-          <h4>
-            Note
-          </h4>
-          <textarea name="area2" style="width: 100%;">
-               Some Initial Content was in this textarea
-        </textarea><br />
-        </div>
-
+      </li>
 					<li id="add">
 						<img src="/images/add.png" alt="" width="128" height="128" />
 						<h3>추가</h3>
