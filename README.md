@@ -9,7 +9,9 @@ Documents
 > - Make a Notepad homepage
 
 > > **Main Tap menu Source**
-> > - The book : "HTML5 + CSS3 + jQuery" by Yamoo
+> > - The book; "HTML5 + CSS3 + jQuery" by Yamoo
+> > - official site
+> > - yamoo9.com
 
 > > **Clock**
 > > - <a href='https://github.com/chrstphrknwtn/grid-clock'>https://github.com/chrstphrknwtn/grid-clock</a>
