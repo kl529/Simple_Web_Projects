@@ -8,7 +8,8 @@ Documents
 > **Main Tap menu Source**
 > - The book : "HTML5 + CSS3 + jQuery" by Yamoo
 
-> **Clock from https://github.com/chrstphrknwtn/grid-clock"**
+> **Clock**
+> - <a href='https://github.com/chrstphrknwtn/grid-clock'>https://github.com/chrstphrknwtn/grid-clock</a>
 > - License information doesn't have.
 
 > **Text Editor :**
