@@ -1,11 +1,12 @@
 About reference and License
 ===========================
+This project is maden to practice OSS and programing.
 
 Documents
 ---------
 
 > **Main Tap menu Source**
-> - HTML5 + CSS3 + jQuery" by Yamoo
+> - The book : "HTML5 + CSS3 + jQuery" by Yamoo
 
 > **Clock from https://github.com/chrstphrknwtn/grid-clock"**
 > - License information doesn't have.
