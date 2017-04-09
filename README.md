@@ -3,7 +3,7 @@
 ### Clock from https://github.com/chrstphrknwtn/grid-clock : License information doesn't have.
 
 ### Text Editor :
-##### NickEdit
-##### http://nicedit.com/index.php
-##### Copyright (c) 2007-2008 Brian Kirchoff (http://nicedit.com),
-##### MIT License
+#####         NickEdit
+#####         <a href='http://nicedit.com/index.php'>http://nicedit.com/index.php</a>
+#####         Copyright (c) 2007-2008 Brian Kirchoff ( <a href='http://nicedit.com'>http://nicedit.com</a>),
+#####         MIT License
