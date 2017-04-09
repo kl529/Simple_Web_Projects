@@ -4,6 +4,7 @@
 <!--[if IE 8]><html lang="ko" class="no-js old ie8"><![endif]-->
 <!--[if IE 9]><html lang="ko" class="no-js modern ie9"><![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--><html lang="ko" class="no-js modern"><!--<![endif]-->
+
 <head>
 <meta charset="utf-8" />
 <title>OSS2017 - Notepad </title>
@@ -16,6 +17,7 @@
 <script src="/javascripts/libs/jquery.min.js"></script>
 <script src="/javascripts/jquery.tabs.js"></script>
 <script src="/javascripts/tab_design.js"></script>
+<script src="/javascripts/dbcontrol.js"></script>
 <!--[if lte IE 9]><script src="include/js/libs/CFInstall.min.js"></script>
 <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})});</script><![endif]-->
 <!--[if IE 6]><script src="include/js/libs/DD_belatedPNG.min.js"></script>
@@ -70,7 +72,44 @@ glyph {
 
 </style>
 
+
+<script>
+  function savefunc(){
+    var sqlite3 = require('sqlite3').verbose();
+    var db = new sqlite3.Database('saveNote');
+    alert("디버그1");
+
+    db.serialize(function(){
+      db.run("CREATE TABLE IF NOT EXISTS note (pr TEXT, con TEXT)");
+
+      var stmt = db.prepare("INSERT INTO note values(?,?)");
+      alert("디버그2");
+
+      var da = new Date();
+      var pr = da.toLocaleTimeString();
+      alert("디버그3");
+
+      var con = $("#memoarea").val();
+      alert("디버그4");
+
+      stmt.run(pr, con);
+      alert("디버그5");
+      }
+
+    stmt.finalize();
+
+    });
+
+    db.close();
+
+    alert("저장되었습니다.");
+  }
+</script>
+
+
 </head>
+
+
 <body>
 <div id="page-wrap">
 
@@ -724,35 +763,10 @@ glyph {
           </textarea><br />
           </div>
 
-          <!-- doesn't work -->
-          <script launguage='javascript'>
-            function savefunc(){
-              var sqlite3 = require('sqlite3').verbose();
-              var db = new sqlite3.Database('saveNote');
-
-              db.serialize(function(){
-                db.run("CREATE TABLE note (pr TEXT, con TEXT)");
-
-                var stmt = db.prepare("INSERT INTO note values(?,?)");
-
-                var date = new Date();
-                var pr = date.toLocaleTimeString();
-
-                var con = $("#memoarea").val();
-
-                stmt.run(pr, con);
-                }
-
-              stmt.finalize();
-
-              });
-
-              db.close();
-
-              alert("저장되었습니다.");
-            }
-          </script>
-          <p><input type="button" id="save" value="저장" onclick='savefunc()'></p>
+          <form>
+            <input type='button' id='savenote' value="저장">
+          </form>
+          
       </li>
 					<li id="add">
 						<img src="/images/add.png" alt="" width="128" height="128" />
