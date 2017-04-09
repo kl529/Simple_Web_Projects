@@ -4,9 +4,11 @@ About reference and License
 Documents
 ---------
 
-> **Main Tap menu Source from "  HTML5 + CSS3 + jQuery" by Yamoo**
+> **Main Tap menu Source**
+> - HTML5 + CSS3 + jQuery" by Yamoo
 
-> **Clock from https://github.com/chrstphrknwtn/grid-clock : License information doesn't have.**
+> **Clock from https://github.com/chrstphrknwtn/grid-clock"**
+> - License information doesn't have.
 
 > **Text Editor :**
 > - NickEdit
