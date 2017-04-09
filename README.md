@@ -6,6 +6,8 @@ Documents
 ---------
 
 > **project1**
+> - Make a Notepad homepage
+
 > > **Main Tap menu Source**
 > > - The book : "HTML5 + CSS3 + jQuery" by Yamoo
 
