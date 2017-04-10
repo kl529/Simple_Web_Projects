@@ -1,32 +1,37 @@
 window.onload= init;
 
 function init() {
-  var button = document.getElementById("savenote");
-  button.onclick = handleButtonClick;
+  var jsdom = require('jsdom');
+  jsdom.env({
+    html: "Notepad.html",
+    done: function(error, window){
+      var button = button.getElementById("savenote");
+      button.onlick = handleButtonClick;
+    }
+  })
 }
 
 function handleButtonClick(e){
-  var sqlite3 = require('sqlite3').verbose();
-  var db = new sqlite3.Database('saveNote');
+  alert("진입");
+    var sqlite3 = require('sqlite3').verbose();
+    var db = new sqlite3.Database('saveNote');
 
-  db.serialize(function(){
-    db.run("CREATE TABLE IF NOT EXISTS note (dateinfo TEXT, contents TEXT)");
+    alert("생성");
 
-    var stmt = db.prepare("INSERT INTO note values(?,?)");
+    db.serialize(function(){
+      db.run("CREATE TABLE IF NOT EXISTS note (pr TEXT, con TEXT)");
 
-    var da = new Date();
-    var pr = da.toLocaleTimeString();
+      var stmt = db.prepare("INSERT INTO note values(?,?)");
 
-    var con = $("#memoarea").val();
+      var da = new Date();
+      var pr = da.toLocaleTimeString();
 
-    stmt.run(pr, con);
-    }
+      var con = $("#memoarea").val();
 
-  stmt.finalize();
+      stmt.run(pr, con);
+    });
 
-  });
+    stmt.finalize();
 
-  db.close();
-
-  alert("저장되었습니다.");
+    db.close();
 }

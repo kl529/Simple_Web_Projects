@@ -17,7 +17,7 @@
 <script src="/javascripts/libs/jquery.min.js"></script>
 <script src="/javascripts/jquery.tabs.js"></script>
 <script src="/javascripts/tab_design.js"></script>
-<script src="/javascripts/dbcontrol.js"></script>
+<script src="../node_modules/sqlite3/sqlite3.js"></script>
 <!--[if lte IE 9]><script src="include/js/libs/CFInstall.min.js"></script>
 <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})});</script><![endif]-->
 <!--[if IE 6]><script src="include/js/libs/DD_belatedPNG.min.js"></script>
@@ -72,40 +72,91 @@ glyph {
 
 </style>
 
-
+<!-- doesn't work I don't know how to connect html5 to sqlite3
 <script>
   function savefunc(){
     var sqlite3 = require('sqlite3').verbose();
     var db = new sqlite3.Database('saveNote');
-    alert("디버그1");
 
     db.serialize(function(){
       db.run("CREATE TABLE IF NOT EXISTS note (pr TEXT, con TEXT)");
 
       var stmt = db.prepare("INSERT INTO note values(?,?)");
-      alert("디버그2");
 
       var da = new Date();
       var pr = da.toLocaleTimeString();
-      alert("디버그3");
 
       var con = $("#memoarea").val();
-      alert("디버그4");
 
       stmt.run(pr, con);
-      alert("디버그5");
-      }
+    });
 
     stmt.finalize();
-
-    });
 
     db.close();
 
     alert("저장되었습니다.");
   }
 </script>
+-->
 
+<!-- from: http://m.mkexdev.net/61 -->
+<script type="text/JavaScript">
+
+      var db;
+      function createDB(){
+        db = window.openDatabase("myDB","1.0", "테스트용DB", 1024*1024);
+      }
+
+      function createTable(){
+        db.transaction(function(tx){
+          tx.executeSql("create table Test(id,name)");
+        });
+      }
+
+      function insertData(){
+        createDB();
+        createTable();
+        db.transaction(function(tx){
+          var da = new Date();
+          var pr = da.toLocaleTimeString();
+
+          // Fail to bring a memoarea value. I don't know what is problem.
+          var x = document.getElementById("memoarea").value;
+
+          tx.executeSql("insert into Test values(?,?)",[pr,x]);
+          selectData();
+          alert("데이터를 저장하였습니다.");
+        });
+      }
+
+      function selectData(){
+        createDB();
+        createTable();
+        document.getElementById('table1').innerHTML = "";
+        db.transaction(function(tx){
+          tx.executeSql("select * from Test",[],
+
+            function(tx,result){
+              for(var i = 0; i < result.rows.length; i++){
+                var row = result.rows.item(i);
+                document.getElementById('table1').innerHTML +=  "<tr><td>" + row['id'] + "</td><td>" + row['name'] + "</td></tr>";
+              }
+
+            });
+
+        });
+      }
+
+      function deleteData(){
+        db.transaction(function(tx){
+          tx.executeSql("DROP TABLE Test");
+        });
+        selectData();
+        alert("삭제가 완료되었습니다.");
+      }
+
+    </script>
 
 </head>
 
@@ -140,8 +191,8 @@ glyph {
 					</a>
 				</li>
 				<li>
-					<a href="#add">
-						<img src="/images/add-icon.png" alt="" />추가
+					<a href="#list">
+						<img src="/images/NoteList-icon.png" alt="" />목록
 					</a>
 				</li>
 			</ul>
@@ -758,20 +809,28 @@ glyph {
             <h4>
               Note
             </h4>
-            <textarea id="memoarea" style="width: 100%;">
-                 Some Initial Content was in this textarea
-          </textarea><br />
+            <textarea id="memoarea" style="width: 100%;">Some Initial Content was in this textarea</textarea>
+            <br />
           </div>
+          <button onclick='insertData()'>저장</button>
+          <p id="demo"></p>
+          <!--
+          <button onclick="createDB()">DB 생성</button>
+          <br>
+          <button onclick="createTable()">테이블생성</button>
+          <br>
+        -->
+          <!--
+          <table id="table1"></table>-->
 
-          <form>
-            <input type='button' id='savenote' value="저장">
-          </form>
-          
       </li>
-					<li id="add">
-						<img src="/images/add.png" alt="" width="128" height="128" />
-						<h3>추가</h3>
-						<p> 미구현 </p>
+					<li id="list">
+						<h3>목록</h3>
+            <br>
+            <table id="table1"></table>
+            <br>
+            <button onclick="selectData()">조회</button>
+            <button onclick="deleteData()">전체 삭제</button>
 					</li>
 			</ul>
 		</div><!-- e: .tab_contents -->
