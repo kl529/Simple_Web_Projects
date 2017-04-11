@@ -122,7 +122,8 @@ glyph {
           var pr = da.toLocaleTimeString();
 
           // Fail to bring a memoarea value. I don't know what is problem.
-          var x = document.getElementById("memoarea").value;
+          // var x = document.getElementByClass("nicEdit-main").value;
+          var x = $("div.nicEdit-main").html();
 
           tx.executeSql("insert into Test values(?,?)",[pr,x]);
           selectData();
