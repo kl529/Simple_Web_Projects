@@ -119,7 +119,11 @@ glyph {
         createTable();
         db.transaction(function(tx){
           var da = new Date();
-          var pr = da.toLocaleTimeString();
+          var year  = da.getFullYear();
+          var month = da.getMonth() + 1; // 0부터 시작하므로 1더함 더함
+          var day   = da.getDate();
+
+          var pr = year + "-" + month + "-" + day + " " + da.toLocaleTimeString();
 
           // Fail to bring a memoarea value. I don't know what is problem.
           // var x = document.getElementByClass("nicEdit-main").value;
