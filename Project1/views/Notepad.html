@@ -27,6 +27,82 @@
 <script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
 <script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
 
+<!-- Weather From : https://github.com/traumverloren/weather -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<link href='https://fonts.googleapis.com/css?family=Quicksand|Sacramento' rel='stylesheet' type='text/css'>
+
+<style>
+
+  .jumbotron {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      font-family: Quicksand;
+      padding: 0px;
+  }
+
+  .jumbotron p {
+      font-size: 20px;
+      line-height: 1;
+  }
+
+  .jumbotron h1 {
+      font-family: Sacramento;
+      font-size: 30px;
+      line-height: 1;
+  }
+
+  .jumbotron img {
+      max-width: 100%;
+      height: auto;
+  }
+
+  /* Landscape phones and portrait tablets */
+  @media (max-width: 767px) {
+    .jumbotron img {
+        max-width: 60%;
+        height: auto;
+    }
+  }
+
+  /* Portrait phones and smaller */
+  @media (max-width: 480px) {
+    .jumbotron img {
+        max-width: 100%;
+        height: auto;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .jumbotron p {
+        font-size: 22px;
+    }
+
+    .jumbotron h1 {
+        font-size: 42px;
+      }
+  }
+
+  .steph {
+      font-family: 'Quicksand';
+      font-size: 16px;
+      align-self: flex-start;
+      margin-left: auto;
+  }
+
+  .steph a {
+      color: #009688;
+  }
+
+  .steph a:hover {
+      text-decoration: none;
+      color: #00796B;
+  }
+</style>
+
 <!-- Clock From : https://github.com/chrstphrknwtn/grid-clock -->
 <style>
 
@@ -71,34 +147,6 @@ glyph {
 }
 
 </style>
-
-<!-- doesn't work I don't know how to connect html5 to sqlite3
-<script>
-  function savefunc(){
-    var sqlite3 = require('sqlite3').verbose();
-    var db = new sqlite3.Database('saveNote');
-
-    db.serialize(function(){
-      db.run("CREATE TABLE IF NOT EXISTS note (pr TEXT, con TEXT)");
-
-      var stmt = db.prepare("INSERT INTO note values(?,?)");
-
-      var da = new Date();
-      var pr = da.toLocaleTimeString();
-
-      var con = $("#memoarea").val();
-
-      stmt.run(pr, con);
-    });
-
-    stmt.finalize();
-
-    db.close();
-
-    alert("저장되었습니다.");
-  }
-</script>
--->
 
 <!-- from: http://m.mkexdev.net/61 -->
 <script type="text/JavaScript">
@@ -205,10 +253,7 @@ glyph {
 		<div class="tab_contents">
 			<ul>
 				<li id="clock">
-					<!--<img src="/images/clock.png" alt="" width="128" height="128" />
-					<h3>시계</h3>
-					<p>시계 체크</p>
-				-->
+          <!-- Clock From : https://github.com/chrstphrknwtn/grid-clock -->
 
 					<clockmain>
 
@@ -768,7 +813,158 @@ glyph {
 
 				</li>
 				<li id="weather">
-					<p> 미구현 </p>
+          <!-- Weather From : https://github.com/traumverloren/weather -->
+          <div class="background container-fluid">
+            <p class="pull-right steph">by <a href="https://traumverloren.github.io">stephanie</a></p>
+            <div class="row">
+              <div class="jumbotron text-center">
+                <div class="data">
+                  <div class="waiting">
+                    <img src="./images/rainbow.png"></img>
+                    <h1>Retrieving your weather info...</h1>
+                    <i class="fa fa-2x fa-spinner fa-spin fa-pulse"></i>
+                  </div>
+                  <div class="weather-data">
+                    <div id="weather-icon"></div>
+                    <h1 id="summary"></h1>
+                    <p><span id="currentTemp"></span> °<span class="units">F</span></p>
+                  </div>
+                </div>
+                <button class="btn btn-large btn-info convertUnits">°C</button>
+              </div>
+            </div>
+          </div>
+
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+          <script>
+            $(document).ready(function() {
+              $(".weather-data").hide(0);
+              $(".convertUnits").hide(0);
+
+              if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(success, error);
+
+                function success(position) {
+                  var key = "6d0af58f1221cec34ad4126a975288ab";
+                  var lat = position.coords.latitude;
+                  var lon = position.coords.longitude;
+                  var data;
+
+                  $.getJSON( "https://api.forecast.io/forecast/" + key + "/" + lat + "," + lon + "?units=us" + "&callback=?", function(data) {
+                    $(".waiting").hide();
+                    $(".weather-data").show();
+
+                    var convertToCelsius = function (temp) {
+                      return (temp - 32) * (5/9)
+                    }
+
+                    var icon = data.currently.icon;
+                    var summary = data.currently.summary;
+                    var currentFahrenheitTemp = Math.round(data.currently.temperature);
+                    var currentCelsiusTemp = Math.round(convertToCelsius(currentFahrenheitTemp));
+
+                    $("#summary").html(summary);
+                    $("#currentTemp").html(currentFahrenheitTemp);
+                    $(".convertUnits").show(0);
+                    $("#weather-icon").html('<img src="' + './images/' + assignImage(icon) + '" />');
+
+                    $("button").click(function() {
+                      if ($(".units").html() === "C") {
+                        $("#currentTemp").html(currentFahrenheitTemp);
+                        $(".units").html("F");
+                        $(".convertUnits").html("°C");
+                      } else if ($(".units").html() === "F") {
+                        $("#currentTemp").html(currentCelsiusTemp);
+                        $(".units").html("C");
+                        $(".convertUnits").html("°F");
+                      }
+                    });
+
+                    // Put in icons to show up based on icon field response.
+                    function assignImage(icon) {
+                      switch (icon) {
+                        case "clear-day":
+                          return "sun.png";
+                          break;
+                        case "clear-night":
+                          return "moon.png";
+                          break;
+                        case "rain":
+                          return "rain.png";
+                          break;
+                        case "snow":
+                          return "snowing.png";
+                          break;
+                        case "sleet":
+                          return "snowing.png";
+                          break;
+                        case "wind":
+                          return "wind.png";
+                          break;
+                        case "fog":
+                          return "cloudy.png";
+                          break;
+                        case "cloudy":
+                          return "cloudy.png";
+                          break;
+                        case "partly-cloudy-day":
+                          return "partly_cloudy.png";
+                          break;
+                        case "partly-cloudy-night":
+                          return "nightclouds.png";
+                          break;
+                        case "hail":
+                          return "super_storm.png";
+                          break;
+                        case "tornado":
+                          return "tornado.png";
+                          break;
+                        case "thunderstorm":
+                          return "thunderstorm.png";
+                          break;
+                        default:
+                          return "rainbow.png";
+                      }
+                    }
+                  });
+                };
+
+                function error() {
+                  $(".data").html('<img src="./images/doh.png" /><br/><p>Sorry, unable to retrieve your location.</p>');
+                };
+
+              } else {
+                $(".data").html("Sorry, geolocation is not supported by your browser.");
+              }
+
+              // This gets all icons upon page load.
+              image0 = new Image();
+              image1 = new Image();
+              image2 = new Image();
+              image3 = new Image();
+              image4 = new Image();
+              image5 = new Image();
+              image6 = new Image();
+              image7 = new Image();
+              image8 = new Image();
+              image9 = new Image();
+              image10 = new Image();
+              image11 = new Image();
+              image0.src="images/sun.png";
+              image1.src="images/cloudy.png";
+              image2.src="images/windy.png";
+              image3.src="images/moon.png";
+              image4.src="images/nightclouds.png";
+              image5.src="images/rain.png";
+              image6.src="images/rainbow.png";
+              image7.src="images/snowing.png";
+              image8.src="images/sun.png";
+              image9.src="images/storm.png";
+              image10.src="images/super_storm.png";
+              image11.src="images/tornado.png";
+            });
+          </script>
 				</li>
 				<li id="calender">
 					<p> 대한민국 공휴일 캘린더 </p>
@@ -776,35 +972,6 @@ glyph {
 					<iframe src="https://calendar.google.com/calendar/embed?src=ko.south_korea%23holiday%40group.v.calendar.google.com&ctz=Asia/Seoul" style="border: 0" width="700" height="600" frameborder="0" scrolling="no"></iframe>
 				</li>
 				<li id="Note">
-          <!--
-					<textarea id="memo" rows="50" cols="95" name="40"></textarea>
-					<p><input type="button" id="save" value="저장"><input type="button" id="clear" value="지우기"></p>
-
-					<script type="text/javascript">
-					$(function() {
-						/*
-						localStorage.setItem('memo', 'ほにゃらら');
-						localStorage.getItem('memo');
-						localStorage.removeItem('memo');
-						localStorage.clear();
-						- internet Explorerではいろいろ罠がある。
-						 */
-						if (localStorage.getItem('memo')) {
-							$('#memo').val(localStorage.getItem('memo'));
-						}
-						$('#clear').click(function() {
-							/* Act on the event */
-							$('#memo').val('');
-							localStorage.clear();
-						});
-						$('#memo').bind('keyup', function() {
-							/* Act on the event */
-							localStorage.setItem('memo', $('#memo').val());
-							console.log(localStorage.getItem('memo'));
-						});
-					});
-					</script>
-        -->
           <div id="memo">
             <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script> <script type="text/javascript">
           //<![CDATA[
@@ -819,14 +986,6 @@ glyph {
           </div>
           <button onclick='insertData()'>저장</button>
           <p id="demo"></p>
-          <!--
-          <button onclick="createDB()">DB 생성</button>
-          <br>
-          <button onclick="createTable()">테이블생성</button>
-          <br>
-        -->
-          <!--
-          <table id="table1"></table>-->
 
       </li>
 					<li id="list">
