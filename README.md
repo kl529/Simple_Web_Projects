@@ -26,4 +26,4 @@ Documents
 > >**Weather**
 > > - <a href='https://github.com/traumverloren/weather'>https://github.com/traumverloren/weather</a>
 > > - License information doens't have.
-> > - Creater Said it is a FreeCodeCamp project in github.
+> > - Creater said it is a FreeCodeCamp project in github.
