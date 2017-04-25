@@ -209,6 +209,26 @@ glyph {
         alert("삭제가 완료되었습니다.");
       }
 
+      //I don''t know how to use select (like) about variables.
+      function searchData(){
+        createDB();
+        createTable();
+        srData = $("#searchCode").val();
+        document.getElementById('table1').innerHTML = "";
+        db.transaction(function(tx){
+          tx.executeSql("select * from Test WHERE name LIKE '%@srData%'",[],
+
+            function(tx,result){
+              for(var i = 0; i < result.rows.length; i++){
+                var row = result.rows.item(i);
+                document.getElementById('table1').innerHTML +=  "<tr><td>" + row['id'] + "</td><td>" + row['name'] + "</td></tr>";
+              }
+
+            });
+
+        });
+      }
+
     </script>
 
 </head>
@@ -995,6 +1015,10 @@ glyph {
             <br>
             <button onclick="selectData()">조회</button>
             <button onclick="deleteData()">전체 삭제</button>
+            <br>
+            <br>
+            검색어 : <input type="text" id="searchCode">
+            <button onclick="searchData()">검색</button>
 					</li>
 			</ul>
 		</div><!-- e: .tab_contents -->
