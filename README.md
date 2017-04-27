@@ -1,13 +1,14 @@
 About reference and License
 ===========================
 This project is maden to practice OSS and programing.
+Hanyang University ERICA, 2016003818 Lee Jun Gi.
 
 Documents
 ---------
 
 > **project1**
 >
-> <img src="http://i64.tinypic.com/14j6ooi.png" height = "400" width = "600">
+> <img src="http://i64.tinypic.com/14j6ooi.png" height = "400" width = "800">
 >
 > - Make a Notepad homepage
 >
@@ -15,15 +16,17 @@ Documents
 > **Tartget Performance**
 > - tap menu design
 > - animated tap menu
-> - clock
+> - clock that constructed letter
 > - weather notification - depends on location
 > - calendar
 > - note input function
 > - note save, Inquiry, delete, search
-> - background
+> - background image
 > - change the font : NanumGothicWeb
 > -
-
+>
+>
+>
 > > **Main Tap menu Source**
 > > - The book; "HTML5 + CSS3 + jQuery" by Yamoo
 > > - official site
