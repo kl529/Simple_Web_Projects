@@ -213,10 +213,10 @@ glyph {
       function searchData(){
         createDB();
         createTable();
-        srData = $("#searchCode").val();
+        var srData = $("#searchCode").val();
         document.getElementById('table1').innerHTML = "";
         db.transaction(function(tx){
-          tx.executeSql("select * from Test WHERE name LIKE '%@srData%'",[],
+          tx.executeSql("select * from Test WHERE name LIKE '%" +srData+ "%'",[],
 
             function(tx,result){
               for(var i = 0; i < result.rows.length; i++){
