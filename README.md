@@ -8,8 +8,21 @@ Documents
 > **project1**
 >
 > <img src="http://i64.tinypic.com/14j6ooi.png" height = "400" width = "600">
+>
 > - Make a Notepad homepage
-> ### Tartget
+>
+>
+> **Tartget Performance**
+> - tap menu design
+> - animated tap menu
+> - clock
+> - weather notification - depends on location
+> - calendar
+> - note input function
+> - note save, Inquiry, delete, search
+> - background
+> - change the font : NanumGothicWeb
+> -
 
 > > **Main Tap menu Source**
 > > - The book; "HTML5 + CSS3 + jQuery" by Yamoo
