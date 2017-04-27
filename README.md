@@ -14,22 +14,22 @@ Documents
 >
 >
 > **Function**
-> - tap menu design
-> - animated tap menu
-> - clock that constructed letter
-> - weather notification - depends on location
-> - calendar
-> - note input function
-> - note save, Inquiry, delete, search
-> - background image
-> - change the font : NanumGothicWeb
+> - Tap menu design
+> - Animated tap menu
+> - Clock that constructed letter
+> - Weather notification - depends on location
+> - Calendar
+> - Note input function
+> - Note save, Inquiry, delete, search
+> - Background image
+> - Change the font : NanumGothicWeb
 >
 >
 >
 >
 > > **Main Tap menu Source**
 > > - The book; "HTML5 + CSS3 + jQuery" by Yamoo
-> > - official site
+> > - Official site
 > > - <a href='yamoo9.com'>yamoo9.com</a>
 
 > > **Clock**
