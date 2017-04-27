@@ -13,7 +13,7 @@ Documents
 > - Make a Notepad homepage
 >
 >
-> **Tartget Performance**
+> **Function**
 > - tap menu design
 > - animated tap menu
 > - clock that constructed letter
@@ -23,7 +23,7 @@ Documents
 > - note save, Inquiry, delete, search
 > - background image
 > - change the font : NanumGothicWeb
-> -
+>
 >
 >
 >
