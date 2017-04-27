@@ -6,9 +6,10 @@ Documents
 ---------
 
 > **project1**
-> <img src="http://i67.tinypic.com/20sbz15.jpg" height = "400" width = "600">
+>
+> <img src="http://i64.tinypic.com/14j6ooi.png" height = "400" width = "600">
 > - Make a Notepad homepage
-> ## Tartget
+> ### Tartget
 
 > > **Main Tap menu Source**
 > > - The book; "HTML5 + CSS3 + jQuery" by Yamoo
