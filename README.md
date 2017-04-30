@@ -8,7 +8,7 @@ Documents
 
 > **project1**
 >
-> <img src="http://i64.tinypic.com/14j6ooi.png" height = "400" width = "800">
+> <img src="http://blog.naver.com/kl529/220995699253/nn.png" height = "400" width = "800">
 >
 > - Make a Notepad homepage
 >
