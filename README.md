@@ -1,7 +1,7 @@
 About reference and License
 ===========================
 This project is maden to practice OSS and programing.
-Hanyang University ERICA, 2016003818 Lee Jun Gi.
+Hanyang University ERICA, 2016003436 Kim Ji Won.
 
 Documents
 ---------
@@ -48,4 +48,10 @@ Documents
 > > - Creater said it is a FreeCodeCamp project in github.
 > >
 > >**Background Image**
-> > - 藤堂茶路 <a href='http://bit.ly/1ogKxnz'>http://bit.ly/1ogKxnz</a>
+> >
+> >**FAVORITE LINK**
+> > - hand making
+> > - icon image : its hompage image 
+> >
+> >**GAME**
+> > - <a href='http://codepen.io/i0z/pen/mFLCw'>http://codepen.io/i0z/pen/mFLCw</a>
