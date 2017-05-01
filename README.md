@@ -46,12 +46,12 @@ Documents
 > > - <a href='https://github.com/traumverloren/weather'>https://github.com/traumverloren/weather</a>
 > > - License information doens't have.
 > > - Creater said it is a FreeCodeCamp project in github.
-> >
+
 > >**Background Image**
-> >
+
 > >**FAVORITE LINK**
 > > - hand making
 > > - icon image : its hompage image 
-> >
+
 > >**GAME**
 > > - <a href='http://codepen.io/i0z/pen/mFLCw'>http://codepen.io/i0z/pen/mFLCw</a>
