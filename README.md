@@ -12,6 +12,12 @@ Documents
 >
 > - Make a Notepad homepage
 >
+
+> > - How to start
+> > - Clone the project
+> > - Type bower install in note-app directory. (automatic install)
+> > - Type npm install in note-app directory.
+> > - type npm start
 >
 > **Function**
 > - Tap menu design
