@@ -14,8 +14,8 @@ Simple Projects If you want to get more informations, visit [here.](https://kari
 
 SR No   | Project 
 --- | --- 
-1 | [Note_Page](https://github.com/kl529/Python_Projects/tree/main/01.%20Tetris) 
-2 | [Mini_Project](https://github.com/kl529/Python_Projects/tree/main/02.%20Matgo%20Game%20(Korean%20Traditonal%20Card%20Game))
+1 | [Note_Page](https://github.com/kl529/Simple_Web_Projects/tree/main/01.%20Note_Page) 
+2 | [Mini_Project](https://github.com/kl529/Simple_Web_Projects/tree/main/02.%20Mini_Project)
 3 | Not Yet❗
 4 | Not Yet❗
 5 | Not Yet❗
